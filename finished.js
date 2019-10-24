@@ -119,7 +119,7 @@
         .attr('cy', yMap)
         .attr('r', (d) => pop_map_func(d["pop_mlns"]))
         .attr('stroke', "#4874B7")
-        .attr('fill', "none")
+        .attr('fill', "transparent")
         // add tooltip functionality to points
         .on("mouseover", function(d) {
           div.transition()
