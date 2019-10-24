@@ -4,7 +4,6 @@
 
   let data = "no data";
   let svgContainer = ""; // keep SVG reference in global scope
-
   // load data and make scatter plot after window loads
   window.onload = function() {
     svgContainer = d3.select('body')
@@ -54,10 +53,9 @@
       .attr("value", function (years) { return years; });
 
       dropDown.on("change", function() {
-        var selected = this.value;
+        let selected = this.value;
         var displayOthers = this.checked ? "inline" : "none";
         var display = this.checked ? "none" : "inline";
-        console.log(selected);
         svgContainer.selectAll("circle")
             .filter(function(d) {return selected != d.time;})
             .attr("display", displayOthers);
@@ -99,7 +97,7 @@
     // make size scaling function for population
     let pop_map_func = d3.scaleLinear()
       .domain([pop_limits[0], pop_limits[1]])
-      .range([3, 20]);
+      .range([5, 90]);
 
     // mapping functions
     let xMap = map.x;
@@ -119,7 +117,7 @@
       .append('circle')
         .attr('cx', xMap)
         .attr('cy', yMap)
-        .attr('r', (d) => pop_map_func(d["pop_mlns"]) * 4)
+        .attr('r', (d) => pop_map_func(d["pop_mlns"]))
         .attr('stroke', "#4874B7")
         .attr('fill', "none")
         // add tooltip functionality to points
